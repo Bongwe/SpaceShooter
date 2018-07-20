@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour{
 
     public float speed;
     public Boundary boundary;
+    public float tilt;
 
     void FixedUpdate ()
     {
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour{
                 0.0f,
                 Mathf.Clamp(GetComponent<Rigidbody>().position.z, boundary.zMin, boundary.zMax)
             );
+
+        GetComponent<Rigidbody>().rotation = Quaternion.Euler(0.0f, 0.0f, GetComponent<Rigidbody>().velocity.x * -tilt);
     }
 
 }
